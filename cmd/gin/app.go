@@ -25,9 +25,13 @@ func initApp() (*gin.Engine, error) {
 		bracketCalculatorURL = "http://localhost:5000/tax-calculator/tax-year/"
 	}
 
-	// initalize tax bracket service and controller
+	// initialize tax bracket service and controller
 	taxBracketService := services.NewTaxBracketService(bracketCalculatorURL)
 	taxBracketController := controllers.NewBracketController(taxBracketService)
+
+	// initialize tax calculator serice and controller
+	taxCalculationService := services.NewTaxCalculator()
+	taxCalculationController := controllers.NewCalculatorController(taxBracketService, taxCalculationService)
 
 	// Create default Gin router
 	router := gin.Default()
@@ -39,6 +43,10 @@ func initApp() (*gin.Engine, error) {
 
 	router.GET("/brackets", func(c *gin.Context) {
 		taxBracketController.GetTaxBracket(c)
+	})
+
+	router.GET("/tax-calculator", func(c *gin.Context) {
+		taxCalculationController.CalculateTax(c)
 	})
 
 	// Error handler for undefined routes

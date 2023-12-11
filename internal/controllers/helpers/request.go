@@ -40,30 +40,33 @@ func GetValidationError(ve validator.ValidationErrors) string {
 		case "Year":
 			switch e.Tag() {
 			case "required":
-				yearErr = "Year is required"
+				yearErr = "Year is required."
 			case "numeric":
-				yearErr = "Year must be a 4 digit numeric value"
+				yearErr = "Year must be a 4 digit numeric value."
 			case "len":
-				yearErr = "Year must be exactly 4 digits"
+				yearErr = "Year must be exactly 4 digits."
 			default:
-				yearErr = "Inavalid Year"
+				yearErr = "Inavalid Year."
 			}
 		case "Salary":
 			switch e.Tag() {
 			case "required":
-				salErr = "Salary is required"
+				salErr = "Salary is required."
 			case "numeric":
-				salErr = "Salary must be a numeric value"
+				salErr = "Salary must be a numeric value."
 			default:
-				salErr = "Invalid Salary"
+				salErr = "Invalid Salary."
 			}
 		default:
-			yearErr = "Invalid Year or Salary"
+			yearErr = "Invalid Year or Salary."
 		}
 	}
 
-	// Combine errors to display any issues in the same message
-	errMsg := yearErr + "/n" + salErr
+	// Display any issues in the same error message
+	errMsg := yearErr
+	if salErr != "" {
+		errMsg += salErr
+	}
 
 	return errMsg
 }

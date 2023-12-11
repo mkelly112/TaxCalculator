@@ -7,23 +7,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// // TaxAmountResponse represents the response for the calculate-tax endpoint
-// type TaxAmountResponse struct {
-// 	TotalTaxAmount   float64            `json:"totalTaxAmount"`
-// 	TaxAmountPerBand map[string]float64 `json:"taxAmountPerBand"`
-// 	EffectiveRate    float64            `json:"effectiveRate"`
-// }
-
 // BracketsResponse represents the response for GetBrackets endpoint
 type BracketsResponse struct {
 	TaxBrackets entities.TaxBrackets `json:"tax_brackets"`
+}
+
+// CalculatorResponse represents the response for the CalculateTax endpoint
+type CalculatorResponse struct {
+	TaxCalculation entities.TaxCalculation `json:"tax_calculation"`
 }
 
 // APIError represents the JSON response for API errors
 type APIError struct {
 	Code    int    `json:"code"`
 	Message string `json:"message"`
-	Details string `json:"details,omitempty"`
 }
 
 // BadRequest sends a Bad Request response with the provided error message.

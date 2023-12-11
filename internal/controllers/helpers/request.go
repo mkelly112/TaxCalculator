@@ -28,7 +28,7 @@ func IsValidYear(year string) bool {
 
 // IsValidSalary checks if the salary is valid (non-negative)
 func IsValidSalary(salary float64) bool {
-	return salary < 0
+	return salary >= 0
 }
 
 // GetValidationError returns the validation error message based on the validation error.

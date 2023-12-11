@@ -46,6 +46,11 @@ func (c *CalculatorController) CalculateTax(ctx *gin.Context) {
 		return
 	}
 
+	if !helpers.IsValidSalary(salary) {
+		helpers.BadRequest(ctx, "Invalid salary input.")
+		return
+	}
+
 	// Validate the valid tax year input
 	if !helpers.IsValidYear(year) {
 		helpers.BadRequest(ctx, "Invalid tax year. Please select one of 2019,2020,2021,2022.")

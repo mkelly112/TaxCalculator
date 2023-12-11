@@ -1,0 +1,63 @@
+random remarks:
+set up my environment, pulled docker image, port 5000 in use by mac airplay, turned off to proceed on same port
+
+
+
+api design:
+
+/calculate-tax/
+
+params
+{
+    tax_year: [2019|2020|2021|2022],
+    salary: float64
+}
+
+
+
+response example for year 2022 + salary 140k
+{
+  "tax_brackets": [
+    {
+        "min": 0,
+        "max": 50197,
+        "rate": 0.15,
+        "bracket_actual": 50197,
+        "bracket_tax": 7529.55
+    },
+    {
+        "min": 50197,
+        "max": 100392,
+        "rate": 0.205,
+        "bracket_actual": 50195,
+        "bracket_tax": 10289.98
+    },
+    {
+        "min": 100392,
+        "max": 155625,
+        "rate": 0.26,
+        "bracket_actual": 39608, // 140k - min
+        "bracket_tax": 10298.08
+    },
+    {
+        "min": 155625,
+        "max": 221708,
+        "rate": 0.29,
+        "bracket_actual": 0,
+        "bracket_tax": 0
+
+    },
+    {
+        "min": 221708,
+        "rate": 0.33,
+        "bracket_actual": 0,
+        "bracket_tax": 0
+    }
+  ],
+  tax_total: 28117.61 // sum bracket_tax
+}
+
+
+
+
+
